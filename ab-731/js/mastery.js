@@ -448,3 +448,52 @@ const MASTERY = [
 `,
   },
 ];
+
+// References to the official Microsoft Learn course (AB-731T00) modules + lessons per sub-skill.
+const MASTERY_REFS = (() => {
+  const B = 'https://learn.microsoft.com/en-us/training/modules/';
+  const mk = (slug, title, units) => ({ module: { title, url: B + slug + '/' }, units: units.map(u => ({ title: u[1], url: B + slug + '/' + u[0] })) });
+  return {
+    '1.1': mk('understand-foundations-generative-ai-business-leaders', 'Understand the foundations of generative AI', [
+      ['2-what-is-generative-ai', 'What is generative AI?'],
+      ['3-explore-business-value-generative-ai-solutions', 'Explore the business value of generative AI solutions'],
+      ['4-understand-generative-ai-models', 'Understand generative AI models'],
+      ['5-understand-cost-drivers-generative-ai', 'Understand cost drivers in generative AI'],
+      ['6-identify-challenges-opportunities-generative-ai', 'Identify challenges and opportunities in generative AI'],
+    ]),
+    '1.2': mk('build-effective-generative-ai-solutions-organization', 'Build effective generative AI solutions', [
+      ['2-understand-prompt-engineering', 'Understand prompt engineering'],
+      ['3-ground-ai-using-trusted-data', 'Ground AI using trusted data'],
+      ['4-build-trustworthy-ai-data-security-considerations', 'Build trustworthy AI — data & security considerations'],
+      ['5-understand-business-value-machine-learning', 'Understand the business value of machine learning'],
+    ]),
+    '2.1': mk('business-value-microsoft-copilot-solutions', 'Drive business value with Microsoft Copilot', [
+      ['2-explore-copilot-solutions', 'Explore Copilot solutions'],
+      ['3-explore-copilot-experiences', 'Explore Copilot experiences'],
+      ['4-map-business-processes-to-copilot-solutions', 'Map business processes to Copilot solutions'],
+      ['5-extend-copilot-organization', 'Extend and customize Copilot'],
+      ['6-responsible-ai-copilot', 'Explore responsible AI in Copilot'],
+      ['7-explore-copilot-licensing-options', 'Explore Copilot licensing'],
+    ]),
+    '2.2': mk('business-value-microsoft-azure-ai-solutions', 'Drive business value with Foundry Tools', [
+      ['2-what-is-azure-ai', 'Why Microsoft Foundry matters'],
+      ['3-business-scenarios-azure-ai', 'Connect business scenarios to Foundry solutions'],
+      ['4-choose-ai-model-goals', 'Choose the right Foundry model for your goals'],
+      ['5-understand-azure-ai-subscriptions', 'Understand Foundry subscription models'],
+    ]),
+    '3.1': mk('embrace-responsible-ai-principles-practices', 'Embrace responsible AI principles & practices', [
+      ['2-prepare-implications-responsible-ai', 'Prepare for responsible AI'],
+      ['3-identify-guiding-principles-responsible-ai', 'Identify guiding principles for responsible AI'],
+      ['4-design-system-ai-governance', 'Design a system for AI governance'],
+      ['5-apply-ai-governance', 'Apply systems for AI governance'],
+      ['6-discuss-practices-responsible-ai-microsoft', 'Responsible AI at Microsoft'],
+      ['7-put-responsible-ai-frameworks', 'Put responsible AI frameworks in action'],
+    ]),
+    '3.2': mk('scale-ai', 'Scale AI in your organization', [
+      ['2-unlock-ai-value', 'Unlock AI value'],
+      ['3-organize-ai-success', 'Organize for AI success'],
+      ['4-empower-business-users-ai', 'Empower business users with AI'],
+      ['5-empower-subject-matter-experts-ai', 'Empower subject matter experts with AI'],
+    ]),
+  };
+})();

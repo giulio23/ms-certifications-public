@@ -122,9 +122,19 @@ function renderGuide(id) {
     return;
   }
 
+  // References — Microsoft Learn (optional; only where MASTERY_REFS is defined)
+  const refs = (typeof MASTERY_REFS !== 'undefined') ? MASTERY_REFS[g.id] : null;
+  const refsHtml = refs ? `<div class="guide" style="margin-top:1.75rem">
+      <h2>References — Microsoft Learn</h2>
+      <p>Notes and questions for this bullet are based on the official course module
+         <a href="${refs.module.url}" target="_blank" rel="noopener"><b>${refs.module.title}</b></a>. Study the individual lessons:</p>
+      <ul>${refs.units.map(u => `<li><a href="${u.url}" target="_blank" rel="noopener">${u.title}</a></li>`).join('')}</ul>
+    </div>` : '';
+
   pane.innerHTML = header +
     `<p class="lead text-gray-600 leading-relaxed mb-6">${g.intro}</p>` +
     `<div class="guide">${g.html}</div>` +
+    refsHtml +
     `<div class="mt-8 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl p-6 text-white shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
        <div>
          <h3 class="font-semibold mb-1">Ready to test yourself?</h3>
