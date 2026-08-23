@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Giulio Stefanica">
+  <meta name="copyright" content="Copyright 2026 Giulio Stefanica. All rights reserved.">
+  <title>AB-100 Practice Exam | Designing and Delivering Agentic AI Business Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-white text-gray-900 antialiased">
+  <!-- hub-home: back to the certification hub root -->
+  <a id="hub-home" href="../" title="Back to the certification hub"
+     style="position:fixed;top:10px;left:10px;z-index:2147483647;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;background:#0f172a;color:#fff;font:600 12px/1 ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;text-decoration:none;border-radius:9999px;box-shadow:0 2px 8px rgba(0,0,0,.25);opacity:.82;transition:opacity .15s"
+     onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.82">&#8962;&nbsp;Hub</a>
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-xs">AB</div>
+        <span class="font-semibold text-gray-900">100 Practice Exam</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="learn.html" class="hidden sm:inline-block text-sm text-gray-600 hover:text-blue-600 transition">Learn</a>
+        <a href="study.html" class="hidden sm:inline-block text-sm text-gray-600 hover:text-blue-600 transition">Study Mode</a>
+        <a href="#domains" class="hidden sm:inline-block text-sm text-gray-600 hover:text-blue-600 transition">Domains</a>
+        <a href="#specs" class="hidden sm:inline-block text-sm text-gray-600 hover:text-blue-600 transition">Exam Info</a>
+        <a href="exam.html" class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-lg transition">Start Exam</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="min-h-[calc(100vh-64px)] flex items-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-sky-50"></div>
+    <div class="relative max-w-6xl mx-auto px-4 md:px-8 py-20 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-xs font-medium px-3 py-1 rounded-full mb-6">
+          <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+          Microsoft Certification Prep
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6 leading-tight">
+          Agentic AI Solutions<br>Architect
+          <span class="text-blue-500">AB-100</span>
+        </h1>
+        <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
+          Original practice questions across all three exam domains for the Agentic AI Business Solutions Architect. Every question maps to the official AB-100 study guide and is derived from the Microsoft Copilot Studio, Microsoft Foundry, Dynamics 365, and Power Platform product docs it references.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="exam.html" class="bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-xl transition text-center shadow-lg shadow-blue-500/20">
+            Start Practice Exam
+          </a>
+          <a href="study.html" class="border border-gray-200 hover:border-gray-300 text-gray-700 font-medium px-6 py-3 rounded-xl transition text-center">
+            Study by Topic
+          </a>
+          <a href="learn.html" class="border border-blue-200 bg-blue-50 hover:bg-blue-100 text-blue-700 font-medium px-6 py-3 rounded-xl transition text-center">
+            Master the skills →
+          </a>
+        </div>
+      </div>
+      <div class="hidden lg:flex justify-center">
+        <div class="relative">
+          <div class="w-72 h-72 bg-gradient-to-br from-blue-400 to-sky-500 rounded-3xl shadow-2xl flex items-center justify-center transform rotate-3">
+            <div class="text-center text-white">
+              <div class="text-6xl font-bold mb-2">3</div>
+              <div class="text-lg font-medium opacity-90">Domains</div>
+              <div class="text-sm opacity-75 mt-1">Associate Level</div>
+            </div>
+          </div>
+          <div class="absolute -top-4 -right-4 w-20 h-20 bg-emerald-400 rounded-2xl shadow-lg flex items-center justify-center text-white font-bold transform -rotate-6">
+            Assoc.
+          </div>
+          <div class="absolute -bottom-4 -left-4 w-24 h-16 bg-amber-400 rounded-2xl shadow-lg flex items-center justify-center text-white text-sm font-medium transform rotate-3">
+            Architect
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAM INFO -->
+  <section id="specs" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <h2 class="text-2xl font-bold text-center mb-12">Exam Specifications</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-gray-50 rounded-2xl p-6 text-center">
+          <div class="text-3xl font-bold text-blue-500 mb-2">~40-60</div>
+          <div class="text-sm text-gray-600">Questions</div>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-6 text-center">
+          <div class="text-3xl font-bold text-blue-500 mb-2">Associate</div>
+          <div class="text-sm text-gray-600">Level</div>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-6 text-center">
+          <div class="text-3xl font-bold text-blue-500 mb-2">700</div>
+          <div class="text-sm text-gray-600">Passing Score</div>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-6 text-center">
+          <div class="text-3xl font-bold text-blue-500 mb-2">Solution<br>Architect</div>
+          <div class="text-sm text-gray-600">Role</div>
+        </div>
+      </div>
+      <p class="text-center text-xs text-gray-400 mt-6">Grants the Microsoft Certified: Agentic AI Business Solutions Architect Associate certification. Always verify current specs on the official Microsoft Learn exam page.</p>
+    </div>
+  </section>
+
+  <!-- DOMAINS -->
+  <section id="domains" class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <h2 class="text-2xl font-bold text-center mb-4">Skills Measured</h2>
+      <p class="text-gray-500 text-center mb-12 max-w-xl mx-auto">Three domains, weighted to match the official exam. Questions are distributed accordingly — Deploy AI-powered business solutions is by far the largest.</p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 font-bold">1</div>
+            <span class="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">25-30%</span>
+          </div>
+          <h3 class="font-semibold mb-3">Plan AI-powered business solutions</h3>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li>Analyze requirements &amp; data for grounding</li>
+            <li>Design AI strategy with the Cloud Adoption Framework</li>
+            <li>Multi-agent across M365 Copilot, Copilot Studio &amp; Foundry</li>
+            <li>Prebuilt vs custom; establish an AI Center of Excellence</li>
+            <li>Evaluate cost/benefit: ROI, TCO, build-vs-buy-vs-extend, model router</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 font-bold">2</div>
+            <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">25-30%</span>
+          </div>
+          <h3 class="font-semibold mb-3">Design AI-powered business solutions</h3>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li>Copilot in Dynamics 365; task, autonomous &amp; prompt-and-response agents</li>
+            <li>Copilot Studio topics, agent flows &amp; prompt actions</li>
+            <li>NLP vs conversational language understanding vs generative orchestration</li>
+            <li>Extensibility: custom Foundry models, MCP, Computer Use, reasoning &amp; voice</li>
+            <li>Orchestrate prebuilt agents: D365, Copilot for Sales/Service, Power Platform AI hub</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 font-bold">3</div>
+            <span class="text-xs font-semibold text-amber-600 bg-amber-50 px-2 py-1 rounded-full">40-45%</span>
+          </div>
+          <h3 class="font-semibold mb-3">Deploy AI-powered business solutions <span class="text-amber-500 font-normal">(largest)</span></h3>
+          <ul class="text-sm text-gray-600 space-y-2">
+            <li>Analyze, monitor &amp; tune: telemetry, agent metrics, feedback</li>
+            <li>Manage testing: test metrics, model validation, end-to-end scenarios</li>
+            <li>Design the ALM process for Copilot Studio, Foundry Agents, custom models &amp; D365 AI</li>
+            <li>Responsible AI, security &amp; governance; prompt-manipulation mitigation</li>
+            <li>Risk &amp; compliance: data residency, access controls, audit trails</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-6 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl p-6 text-white shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="font-semibold mb-1">Official Study Guide</h3>
+          <p class="text-sm text-white/80">All questions trace to the Microsoft Learn AB-100 study guide and the Copilot Studio, Foundry, Power Platform &amp; Dynamics 365 docs it references.</p>
+        </div>
+        <a href="https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ab-100" target="_blank" rel="noopener" class="text-sm font-medium underline decoration-white/40 hover:decoration-white whitespace-nowrap">View on Microsoft Learn →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAM TRAPS -->
+  <section class="py-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white">
+    <div class="max-w-6xl mx-auto px-4 md:px-8">
+      <h2 class="text-2xl font-bold text-center mb-4">Common Exam Traps</h2>
+      <p class="text-slate-400 text-center mb-12 max-w-xl mx-auto">Distinctions AB-100 loves to test</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
+          <div class="text-blue-400 text-lg font-semibold mb-3">Build custom agent vs extend M365 Copilot</div>
+          <p class="text-slate-300 text-sm leading-relaxed">Extend M365 Copilot when the work lives inside the Microsoft 365 experience and needs your data/actions surfaced there. Build a custom agent (Copilot Studio / Foundry) when you need a standalone, purpose-built agent with its own channels, orchestration, and lifecycle.</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
+          <div class="text-emerald-400 text-lg font-semibold mb-3">Copilot Studio vs Microsoft Foundry</div>
+          <p class="text-slate-300 text-sm leading-relaxed">Copilot Studio is the low-code home for business agents (topics, flows, prompt actions). Microsoft Foundry is the pro-code platform for custom models and the Agents service. Pick by builder skill set and control needed, not by feature name alone.</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
+          <div class="text-amber-400 text-lg font-semibold mb-3">NLP / CLU vs generative orchestration</div>
+          <p class="text-slate-300 text-sm leading-relaxed">Classic NLP and conversational language understanding match utterances to authored intents and topics — predictable, tightly scoped. Generative orchestration lets the model select topics, actions, and knowledge dynamically — flexible, but needs stronger grounding and testing.</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
+          <div class="text-violet-400 text-lg font-semibold mb-3">Task vs autonomous vs prompt-and-response agents</div>
+          <p class="text-slate-300 text-sm leading-relaxed">Prompt-and-response agents answer a request in the moment. Task agents complete a defined multi-step job. Autonomous agents are triggered by events and act without a user in the loop — the highest-governance option.</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
+          <div class="text-rose-400 text-lg font-semibold mb-3">When to use a model router</div>
+          <p class="text-slate-300 text-sm leading-relaxed">A model router picks the right model per request to balance cost, latency, and quality — reach for it when workloads are mixed. Don't hard-pin one premium model for every call; route cheap requests to smaller models and reserve the strong model for hard ones.</p>
+        </div>
+        <div class="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10">
+          <div class="text-teal-400 text-lg font-semibold mb-3">Grounding data quality vs prompt engineering</div>
+          <p class="text-slate-300 text-sm leading-relaxed">Hallucinations and wrong answers usually trace to weak, stale, or poorly scoped grounding data — not to prompt wording. Fix the knowledge sources, permissions, and freshness first; prompt tuning can't rescue bad grounding.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-gradient-to-br from-blue-50 to-sky-50">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Test Your Knowledge?</h2>
+      <p class="text-gray-600 mb-8">Original questions across all three domains. Full timed exam or study by topic.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="exam.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium px-8 py-4 rounded-xl transition shadow-lg shadow-blue-500/20 text-lg">
+          Start Practice Exam
+        </a>
+        <a href="study.html" class="inline-block border border-gray-200 hover:border-gray-300 text-gray-700 font-medium px-8 py-4 rounded-xl transition text-lg">
+          Study by Topic
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-400 py-10">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 text-center">
+      <p class="text-sm">Built by Giulio Stefanica</p>
+      <div class="flex items-center justify-center gap-4 mt-3">
+        <a href="https://www.linkedin.com/in/giuliostefanica/" target="_blank" rel="noopener" class="flex items-center gap-1.5 text-gray-400 hover:text-blue-400 transition text-xs">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://medium.com/@giulio_91720" target="_blank" rel="noopener" class="flex items-center gap-1.5 text-gray-400 hover:text-green-400 transition text-xs">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          Medium
+        </a>
+      </div>
+      <div class="mt-4 max-w-xl mx-auto text-xs text-gray-500 leading-relaxed">
+        <p>Free study tool built from my own notes and interpretation of publicly available educational material. All questions are original work, mapped to the official <a href="https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ab-100" target="_blank" rel="noopener" class="text-gray-400 hover:text-gray-300">Microsoft AB-100 study guide</a> and the Microsoft Copilot Studio, Foundry, Power Platform, and Dynamics 365 product docs it references.</p>
+        <p class="mt-2">Not affiliated with, endorsed by, or sponsored by Microsoft. Microsoft, Copilot, Dynamics 365, Power Platform, and related trademarks are the property of Microsoft Corporation. This app does not reproduce Microsoft's copyrighted content &mdash; it is an independent study aid based on publicly available resources.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
