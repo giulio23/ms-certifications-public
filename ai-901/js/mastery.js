@@ -44,169 +44,141 @@ const MASTERY = [
 const MASTERY_REFS = {
  "1.1": {
   "module": {
-   "title": "Fundamentals of Responsible Generative AI",
-   "url": "https://learn.microsoft.com/en-us/training/modules/responsible-generative-ai/"
+   "title": "Introduction to AI concepts — Microsoft Learn",
+   "url": "https://learn.microsoft.com/en-us/training/modules/get-started-ai-fundamentals/"
   },
   "units": [
    {
-    "title": "What is Responsible AI (Microsoft's six principles)",
-    "url": "https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai"
+    "title": "Responsible AI for Microsoft Foundry",
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/responsible-use-of-ai-overview"
    },
    {
-    "title": "Responsible AI for Azure AI Foundry",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-use-of-ai-overview"
-   },
-   {
-    "title": "Azure AI Content Safety overview",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview"
-   },
-   {
-    "title": "Content filtering in Azure AI Foundry",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/content-filter"
+    "title": "Microsoft Foundry transparency note",
+    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-ai/openai/transparency-note"
    }
   ]
  },
  "1.2": {
   "module": {
-   "title": "Fundamentals of Generative AI — Microsoft Learn",
+   "title": "Introduction to generative AI and agents — Microsoft Learn",
    "url": "https://learn.microsoft.com/en-us/training/modules/fundamentals-generative-ai/"
   },
   "units": [
    {
-    "title": "How language models work (tokens, embeddings, transformers)",
-    "url": "https://learn.microsoft.com/en-us/training/modules/fundamentals-generative-ai/3-language-models"
+    "title": "Foundry Models catalog",
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview"
    },
    {
-    "title": "Explore the model catalog in Azure AI Foundry",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/model-catalog-overview"
+    "title": "Model deployment options",
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/deployments-overview"
    },
    {
-    "title": "Deploy models in Azure AI Foundry (deployment options)",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/deployments-overview"
-   },
-   {
-    "title": "How to configure prompts and parameters (temperature, top-p, max tokens)",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/chatgpt"
+    "title": "Prompt engineering & parameters",
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/prompt-engineering"
    }
   ]
  },
  "1.3": {
   "module": {
-   "title": "Fundamentals of AI (Azure AI Foundry) — get started with AI",
-   "url": "https://learn.microsoft.com/en-us/training/modules/get-started-ai-fundamentals/"
+   "title": "Introduction to natural language processing — Microsoft Learn",
+   "url": "https://learn.microsoft.com/en-us/training/modules/introduction-language/"
   },
   "units": [
    {
-    "title": "What is Azure AI Language (text analytics features)",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview"
+    "title": "Introduction to AI speech concepts",
+    "url": "https://learn.microsoft.com/en-us/training/modules/introduction-ai-speech/"
    },
    {
-    "title": "What is the Azure AI Speech service (speech-to-text, text-to-speech, translation)",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/overview"
+    "title": "Introduction to computer vision concepts",
+    "url": "https://learn.microsoft.com/en-us/training/modules/introduction-computer-vision/"
    },
    {
-    "title": "What is Azure AI Vision (image analysis, OCR, detection)",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview"
+    "title": "Introduction to information extraction",
+    "url": "https://learn.microsoft.com/en-us/training/modules/introduction-information-extraction/"
    },
    {
-    "title": "What is Azure AI Content Understanding (multimodal information extraction)",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview"
+    "title": "Introduction to retrieval-augmented generation",
+    "url": "https://learn.microsoft.com/en-us/training/modules/rag-fundamentals/"
    }
   ]
  },
  "2.1": {
   "module": {
-   "title": "What is Azure AI Foundry? — Microsoft Learn",
-   "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-azure-ai-foundry"
+   "title": "Get started with generative AI and agents — Microsoft Learn",
+   "url": "https://learn.microsoft.com/en-us/training/modules/get-started-with-generative-ai-and-agents/"
   },
   "units": [
    {
-    "title": "Quickstart: Get started with Azure AI Foundry (build a chat app in code)",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/quickstarts/get-started-code"
+    "title": "What is Microsoft Foundry?",
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry"
    },
    {
-    "title": "What is Azure AI Foundry Agent Service?",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview"
+    "title": "Foundry SDKs & endpoints",
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/how-to/develop/sdk-overview"
    },
    {
-    "title": "Quickstart: Create a new agent",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/agents/quickstart"
+    "title": "Microsoft Foundry Agent Service",
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/overview"
    },
    {
-    "title": "Deploy models in Azure AI Foundry portal",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/deploy-models-openai"
+    "title": "Prompt engineering",
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/prompt-engineering"
    }
   ]
  },
  "2.2": {
   "module": {
-   "title": "What is Azure AI Speech?",
-   "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/overview"
+   "title": "Get started with text analysis — Microsoft Learn",
+   "url": "https://learn.microsoft.com/en-us/training/modules/get-started-text-analysis-azure/"
   },
   "units": [
    {
-    "title": "Speech to text overview",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-to-text"
+    "title": "Get started with speech",
+    "url": "https://learn.microsoft.com/en-us/training/modules/get-started-speech-azure/"
    },
    {
-    "title": "Text to speech overview",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech"
-   },
-   {
-    "title": "Speech translation overview",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-translation"
-   },
-   {
-    "title": "What is Azure AI Language?",
+    "title": "Azure AI Language overview",
     "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview"
+   },
+   {
+    "title": "Azure AI Speech overview",
+    "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/overview"
    }
   ]
  },
  "2.3": {
   "module": {
-   "title": "Generate images with Azure OpenAI Service",
-   "url": "https://learn.microsoft.com/en-us/training/modules/generate-images-azure-openai/"
+   "title": "Get started with computer vision — Microsoft Learn",
+   "url": "https://learn.microsoft.com/en-us/training/modules/get-started-vision-azure/"
   },
   "units": [
    {
-    "title": "Use vision-enabled chat models (Azure OpenAI in Foundry)",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/gpt-with-vision"
-   },
-   {
-    "title": "Generate images with Azure OpenAI (DALL-E / GPT-image)",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/dall-e"
-   },
-   {
-    "title": "What is Image Analysis (Azure AI Vision)?",
+    "title": "Azure AI Vision Image Analysis",
     "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-image-analysis"
    },
    {
-    "title": "Azure OpenAI image generation quickstart",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/openai/dall-e-quickstart"
+    "title": "Generate images with Foundry (GPT-image)",
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/dall-e"
+   },
+   {
+    "title": "Multimodal models in the Foundry catalog",
+    "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview"
    }
   ]
  },
  "2.4": {
   "module": {
-   "title": "What is Azure AI Content Understanding? — Microsoft Learn",
-   "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview"
+   "title": "Get started with information extraction — Microsoft Learn",
+   "url": "https://learn.microsoft.com/en-us/training/modules/get-started-information-extraction/"
   },
   "units": [
    {
-    "title": "Content Understanding document processing — Microsoft Learn",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/document/overview"
+    "title": "Azure Content Understanding overview",
+    "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/overview"
    },
    {
-    "title": "Content Understanding audio analysis — Microsoft Learn",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/audio/overview"
-   },
-   {
-    "title": "Content Understanding video analysis — Microsoft Learn",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/video/overview"
-   },
-   {
-    "title": "Content Understanding analyzer templates — Microsoft Learn",
-    "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/concepts/analyzer-templates"
+    "title": "Get started with Microsoft Foundry IQ",
+    "url": "https://learn.microsoft.com/en-us/training/modules/get-started-foundry-iq/"
    }
   ]
  }
