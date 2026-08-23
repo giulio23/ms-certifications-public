@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Giulio Stefanica">
+  <meta name="copyright" content="Copyright 2026 Giulio Stefanica. All rights reserved.">
+  <title>DP-700 Study Mode | Implementing Data Engineering Solutions Using Microsoft Fabric</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased min-h-screen">
+  <!-- hub-home: back to the certification hub root -->
+  <a id="hub-home" href="../" title="Back to the certification hub"
+     style="position:fixed;top:10px;left:10px;z-index:2147483647;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;background:#0f172a;color:#fff;font:600 12px/1 ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;text-decoration:none;border-radius:9999px;box-shadow:0 2px 8px rgba(0,0,0,.25);opacity:.82;transition:opacity .15s"
+     onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.82">&#8962;&nbsp;Hub</a>
+
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 md:px-8 flex items-center justify-between h-14">
+      <a href="index.html" class="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        <span class="text-sm">Home</span>
+      </a>
+      <span class="text-sm font-medium text-gray-700">Study Mode</span>
+      <div class="flex items-center gap-4">
+        <a href="learn.html" class="text-sm text-gray-500 hover:text-gray-800 transition">Learn</a>
+        <a href="exam.html" class="text-sm text-blue-500 hover:text-blue-600 transition">Full Exam</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SELECTION SCREEN -->
+  <div id="select-screen" class="max-w-4xl mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+      <h1 class="text-2xl font-bold mb-2">Study by Topic</h1>
+      <p class="text-gray-500 text-sm">Select one or more topics to practice. Questions map to the official DP-700 study guide.</p>
+    </div>
+
+    <!-- Study guide accordion -->
+    <div id="study-guide-container" class="space-y-4"></div>
+
+    <!-- Floating action bar -->
+    <div id="action-bar" class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-200 py-3 px-4 transition-all translate-y-full">
+      <div class="max-w-4xl mx-auto flex items-center justify-between">
+        <div class="text-sm text-gray-600">
+          <span id="selected-count" class="font-semibold text-blue-600">0</span> topics selected
+          <span class="text-gray-400 mx-1">&bull;</span>
+          <span id="question-count" class="font-semibold">0</span> questions
+        </div>
+        <div class="flex items-center gap-4">
+          <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer select-none" title="Off = original Tests set order">
+            <input type="checkbox" id="opt-study-shuffle" class="w-4 h-4 text-blue-500 rounded border-gray-300 focus:ring-blue-500">
+            Shuffle
+          </label>
+          <button onclick="startStudy()" id="btn-start-study" class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-5 py-2 rounded-lg transition disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+            Start Practice
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRACTICE SCREEN -->
+  <div id="practice-screen" class="hidden max-w-3xl mx-auto px-4 py-8">
+    <!-- Breadcrumb -->
+    <div id="study-breadcrumb" class="text-xs text-gray-400 mb-4"></div>
+
+    <!-- Progress -->
+    <div class="flex items-center justify-between mb-4">
+      <div class="text-sm text-gray-600">Question <span id="study-current" class="font-semibold">1</span> of <span id="study-total" class="font-semibold">0</span></div>
+      <div id="study-score-pill" class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
+        <span id="study-correct-count">0</span> correct
+      </div>
+    </div>
+    <div class="h-1.5 bg-gray-200 rounded-full overflow-hidden mb-6">
+      <div id="study-progress-bar" class="h-full bg-blue-500 rounded-full transition-all duration-300" style="width:0%"></div>
+    </div>
+
+    <!-- Question card -->
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-8 mb-6">
+      <div class="flex items-center gap-2 mb-4">
+        <span id="sq-skill" class="text-xs font-semibold px-2 py-1 rounded-full"></span>
+        <span id="sq-topic" class="text-xs text-gray-400"></span>
+        <button onclick="copyStudyQuestion(this)" title="Copy question + answer as clean text" class="ml-auto text-xs text-gray-400 hover:text-blue-600 border border-gray-200 hover:border-blue-300 rounded-lg px-2 py-1 transition">Copy</button>
+      </div>
+      <h2 id="sq-text" class="text-lg font-medium mb-2 leading-relaxed"></h2>
+      <div id="sq-multi-hint" class="hidden text-xs font-semibold text-violet-600 mb-4">☑ Select all that apply</div>
+      <div id="sq-options" class="space-y-3"></div>
+      <div id="sq-explanation" class="hidden mt-6 p-4 rounded-xl border text-sm leading-relaxed"></div>
+      <div id="sq-source" class="hidden mt-3 text-xs text-gray-400">
+        <span>Source: </span><a id="sq-source-link" href="#" target="_blank" rel="noopener" class="text-blue-400 hover:text-blue-600 underline"></a>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <div class="flex justify-between">
+      <button id="btn-skip" onclick="skipStudyQuestion()" class="text-gray-500 hover:text-gray-700 text-sm font-medium px-4 py-2 rounded-lg border border-gray-200 hover:border-gray-300 transition">
+        Skip
+      </button>
+      <div class="flex gap-2">
+        <button id="btn-check" onclick="checkStudyAnswer()" class="bg-violet-500 hover:bg-violet-600 text-white text-sm font-medium px-6 py-2 rounded-lg transition hidden disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+          Check answer
+        </button>
+        <button id="btn-study-next" onclick="nextStudyQuestion()" class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-6 py-2 rounded-lg transition hidden">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="results-screen" class="hidden max-w-3xl mx-auto px-4 py-12">
+    <div class="text-center mb-8">
+      <div id="study-result-icon" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl bg-blue-100">📊</div>
+      <h1 class="text-2xl font-bold mb-2">Study Session Complete</h1>
+      <p class="text-gray-500 text-sm">
+        <span id="study-final-correct" class="font-semibold text-blue-600">0</span> of <span id="study-final-total" class="font-semibold">0</span> correct
+      </p>
+    </div>
+
+    <!-- Per-bullet breakdown -->
+    <div id="bullet-breakdown" class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 mb-8 space-y-4"></div>
+
+    <!-- Actions -->
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <button onclick="retryWeak()" id="btn-retry-weak" class="border border-gray-200 hover:border-gray-300 text-gray-700 font-medium px-6 py-3 rounded-xl transition hidden">
+        Retry Weak Areas
+      </button>
+      <button onclick="backToGuide()" class="border border-gray-200 hover:border-gray-300 text-gray-700 font-medium px-6 py-3 rounded-xl transition">
+        Back to Study Guide
+      </button>
+      <a href="exam.html" class="bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 py-3 rounded-xl transition text-center">
+        Take Full Exam
+      </a>
+    </div>
+  </div>
+
+  <script src="js/study-guide.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/study-questions.js"></script>
+  <script src="js/questions.combined.js"></script>
+  <script src="js/copy-util.js"></script>
+  <script src="js/study-app.js"></script>
+  <script>
+    // Copy is enabled — this is a private, gated study app for personal use.
+  </script>
+</body>
+</html>
