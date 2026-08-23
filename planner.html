@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certification Roadmap &amp; Study Planner</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%97%BA%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+  <style>
+    /* ===== theme ===== */
+    :root {
+      --bg:#f9fafb; --card:#ffffff; --card2:#f3f4f6; --line:#e5e7eb;
+      --txt:#111827; --muted:#6b7280; --pri:#3b82f6; --pri-txt:#fff;
+      --ok:#059669; --ok-bg:#d1fae5; --warn:#b45309; --warn-bg:#fef3c7;
+      --blue:#3b82f6; --blue-bg:#dbeafe; --amber:#d97706; --amber-bg:#fef3c7;
+      --bar-bg:#e5e7eb;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--txt); line-height:1.5;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    a { color:inherit; }
+    .wrap { max-width:1000px; margin:0 auto; padding:0 1.25rem; }
+    header { padding:2.25rem 0 1rem; }
+    .hubhome { display:inline-flex; align-items:center; gap:.4rem; font-size:.8rem; color:var(--muted);
+      text-decoration:none; margin-bottom:1rem; }
+    .hubhome:hover { color:var(--txt); }
+    h1 { margin:.2rem 0; font-size:1.8rem; }
+    .sub { color:var(--muted); margin:.2rem 0 0; max-width:46rem; }
+
+    /* summary strip */
+    .summary { display:flex; flex-wrap:wrap; gap:1rem; margin:1.4rem 0 .4rem; }
+    .stat { background:var(--card); border:1px solid var(--line); border-radius:.7rem; padding:.8rem 1.1rem; flex:1 1 180px; }
+    .stat .k { font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+    .stat .v { font-size:1.5rem; font-weight:700; margin-top:.15rem; }
+    .stat .v.small { font-size:1.05rem; }
+
+    /* settings */
+    .settings { background:var(--card2); border:1px solid var(--line); border-radius:.7rem; padding:1rem 1.1rem; margin:1rem 0 1.6rem;
+      display:flex; flex-wrap:wrap; gap:1.2rem; align-items:flex-end; }
+    .field label { display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:.3rem; }
+    input[type=date], input[type=number] { background:var(--bg); color:var(--txt); border:1px solid var(--line);
+      border-radius:.45rem; padding:.4rem .55rem; font:inherit; font-size:.85rem; }
+    input[type=number] { width:5rem; }
+    select { background:var(--bg); color:var(--txt); border:1px solid var(--line); border-radius:.45rem; padding:.35rem .5rem; font:inherit; font-size:.82rem; }
+    .reset { margin-left:auto; background:transparent; border:1px solid var(--line); color:var(--muted); border-radius:.45rem;
+      padding:.45rem .8rem; font:inherit; font-size:.8rem; cursor:pointer; }
+    .reset:hover { color:var(--txt); border-color:var(--muted); }
+
+    /* cert card */
+    .card { background:var(--card); border:1px solid var(--line); border-left-width:4px; border-radius:.7rem;
+      padding:1rem 1.15rem; margin-bottom:.9rem; }
+    .card.st-passed { opacity:.72; }
+    .st-todo { border-left-color:var(--line); }
+    .st-studying { border-left-color:var(--blue); }
+    .st-scheduled { border-left-color:var(--amber); }
+    .st-passed { border-left-color:var(--ok); }
+    .row1 { display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap; }
+    .num { color:var(--muted); font-variant-numeric:tabular-nums; font-size:.85rem; }
+    .code { font-weight:700; font-size:1.1rem; }
+    .name { color:var(--txt); }
+    .lvl { font-size:.65rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted);
+      border:1px solid var(--line); border-radius:.3rem; padding:.05rem .4rem; }
+    .cd { margin-left:auto; font-weight:600; font-size:.9rem; }
+    .cd.ok { color:var(--ok); } .cd.warn { color:var(--warn); } .cd.soon { color:var(--amber); } .cd.muted { color:var(--muted); }
+
+    .controls { display:flex; flex-wrap:wrap; gap:1rem; align-items:flex-end; margin:.8rem 0 .2rem; }
+    .suggest { font-size:.72rem; color:var(--muted); margin-top:.3rem; }
+    .suggest button { background:none; border:none; color:var(--pri); cursor:pointer; font:inherit; font-size:.72rem; padding:0 0 0 .3rem; text-decoration:underline; }
+
+    /* progress */
+    .prog { margin:.7rem 0 .2rem; font-size:.78rem; color:var(--muted); }
+    .bar { height:6px; background:var(--bar-bg); border-radius:999px; overflow:hidden; margin-top:.3rem; max-width:340px; }
+    .bar > span { display:block; height:100%; background:var(--pri); }
+    .noprog { color:var(--muted); font-size:.78rem; font-style:italic; }
+
+    .actions { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.8rem; }
+    .btn { font-size:.78rem; padding:.4rem .75rem; border-radius:.45rem; text-decoration:none; border:1px solid var(--line); color:var(--txt); display:inline-block; }
+    .btn-primary { background:var(--pri); border-color:var(--pri); color:var(--pri-txt); font-weight:600; }
+    .btn:hover { filter:brightness(1.15); }
+    .badge-warn { font-size:.62rem; background:var(--warn-bg); color:var(--warn); border-radius:.3rem; padding:.1rem .45rem; text-transform:uppercase; letter-spacing:.04em; font-weight:600; }
+
+    /* schedule */
+    details.sched { margin-top:.9rem; border-top:1px dashed var(--line); padding-top:.6rem; }
+    details.sched summary { cursor:pointer; font-size:.8rem; color:var(--muted); }
+    details.sched summary:hover { color:var(--txt); }
+    .sitem { display:flex; gap:.55rem; align-items:flex-start; padding:.35rem 0; font-size:.85rem; }
+    .sitem input { margin-top:.28rem; }
+    .sitem .wk { color:var(--muted); font-variant-numeric:tabular-nums; min-width:5.6rem; font-size:.78rem; }
+    .sitem.done .t { text-decoration:line-through; color:var(--muted); }
+    .sitem .wt { color:var(--muted); font-size:.72rem; }
+
+    footer { color:var(--muted); font-size:.78rem; padding:1rem 0 3rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="hubhome" href="index.html">&#8592; Back to the hub</a>
+      <h1>Certification Roadmap &amp; Study Planner</h1>
+      <p class="sub">Your target path, in order. Set a start date and weekly pace and the planner suggests exam dates; set your own date on any cert to override. Progress is read live from each study app. Everything is saved in this browser only.</p>
+      <div class="summary">
+        <div class="stat"><div class="k">Roadmap</div><div class="v" id="s-passed">0 / 10</div><div class="k" style="margin-top:.2rem">certs passed</div></div>
+        <div class="stat"><div class="k">Next exam</div><div class="v small" id="s-next">—</div></div>
+        <div class="stat"><div class="k">Countdown</div><div class="v" id="s-countdown">—</div></div>
+      </div>
+    </header>
+
+    <div class="settings">
+      <div class="field">
+        <label for="startDate">Start date</label>
+        <input type="date" id="startDate" />
+      </div>
+      <div class="field">
+        <label for="hpw">Hours / week</label>
+        <input type="number" id="hpw" min="1" max="60" step="1" />
+      </div>
+      <div class="field" style="color:var(--muted);font-size:.78rem;max-width:20rem">
+        The pace stacks certs one after another — a suggested date only fills in where you haven't set one.
+      </div>
+      <button class="reset" id="reset">Reset planner</button>
+    </div>
+
+    <div id="list"></div>
+
+    <footer>
+      Built for personal study planning. Suggested study hours are rough defaults by level (Fundamentals ~15h, Professional ~20h, Associate ~35h) — adjust your weekly pace to fit. Exam blueprints and weightings are from the official Microsoft Learn study guides; verify current details before booking.
+    </footer>
+  </div>
+
+<script>
+/* ===================== CONFIG (differs per hub) ===================== */
+const HUB = 'public';           // 'private' | 'public'
+/* =================================================================== */
+
+const APP = {
+  private: {
+    exam:  c => c + '/practice-exam-merged/exam.html',
+    learn: c => c + '/practice-exam-merged/learn.html',
+    study: c => c + '/practice-exam-merged/study.html',
+  },
+  public: {
+    exam:  c => c + '/exam.html',
+    learn: c => c + '/learn.html',
+    study: c => c + '/study.html',
+  }
+}[HUB];
+
+const G = code => 'https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/' + code.toLowerCase();
+
+// order matters — this is the roadmap sequence
+const ROADMAP = [
+  { code:'DP-600', slug:'dp-600', key:'dp600', name:'Fabric Analytics Engineer', level:'Associate', hours:35, app:true, domains:[
+    {t:'Maintain a data analytics solution', w:'25–30%'},
+    {t:'Prepare data', w:'45–50%'},
+    {t:'Implement & manage semantic models', w:'25–30%'} ]},
+  { code:'DP-700', slug:'dp-700', key:'dp700', name:'Fabric Data Engineer', level:'Associate', hours:35, app:false, domains:[
+    {t:'Implement and manage an analytics solution', w:'30–35%'},
+    {t:'Ingest and transform data', w:'30–35%'},
+    {t:'Monitor and optimize an analytics solution', w:'30–35%'} ]},
+  { code:'AI-901', slug:'ai-901', key:'ai901', name:'Azure AI Fundamentals', level:'Fundamentals', hours:15, app:true, domains:[
+    {t:'Identify AI concepts and capabilities', w:'40–45%'},
+    {t:'Implement AI solutions with Microsoft Foundry', w:'55–60%'} ]},
+  { code:'AB-900', slug:'ab-900', key:'ab900', name:'Copilot & Agent Administration', level:'Fundamentals', hours:15, app:true, domains:[
+    {t:'Core features & objects of Microsoft 365', w:'30–35%'},
+    {t:'Data protection & governance', w:'35–40%'},
+    {t:'Administer Copilot and agents', w:'25–30%'} ]},
+  { code:'AB-730', slug:'ab-730', key:'ab730', name:'AI Business Professional', level:'Professional', hours:20, app:true, domains:[
+    {t:'Understand generative AI fundamentals', w:'25–30%'},
+    {t:'Manage prompts and conversations', w:'35–40%'},
+    {t:'Draft and analyze business content', w:'25–30%'} ]},
+  { code:'AB-731', slug:'ab-731', key:'ab731', name:'AI Transformation Leader', level:'Fundamentals', hours:15, app:true, domains:[
+    {t:'Business value of generative AI', w:'35–40%'},
+    {t:"Microsoft's AI apps & services", w:'35–40%'},
+    {t:'Implementation & adoption strategy', w:'20–25%'} ]},
+  { code:'AB-620', slug:'ab-620', key:'ab620', name:'AI Agent Builder', level:'Associate', hours:35, app:true, domains:[
+    {t:'Plan and configure agent solutions', w:'30–35%'},
+    {t:'Integrate & extend agents', w:'40–45%'},
+    {t:'Test and manage agents', w:'20–25%'} ]},
+  { code:'AB-100', slug:'ab-100', key:'ab100', name:'Agentic AI Business Solutions Architect', level:'Associate', hours:40, app:false, domains:[
+    {t:'Plan AI-powered business solutions', w:'25–30%'},
+    {t:'Design AI-powered business solutions', w:'25–30%'},
+    {t:'Deploy AI-powered business solutions', w:'40–45%'} ]},
+  { code:'MB-800', slug:'mb-800', key:'mb800', name:'Business Central Functional Consultant', level:'Associate', hours:35, app:true, domains:[
+    {t:'Set up Business Central', w:'20–25%'},
+    {t:'Configure financials', w:'30–35%'},
+    {t:'Configure sales and purchasing', w:'10–15%'},
+    {t:'Perform Business Central operations', w:'30–35%'} ]},
+  { code:'AI-103', slug:'ai-103', key:'ai103', name:'Azure AI Apps & Agents Developer', level:'Associate', hours:40, app:false, domains:[
+    {t:'Plan and manage an Azure AI solution', w:'25–30%'},
+    {t:'Implement generative AI and agentic solutions', w:'30–35%'},
+    {t:'Implement computer vision solutions', w:'10–15%'},
+    {t:'Implement text analysis solutions', w:'10–15%'},
+    {t:'Implement information extraction solutions', w:'10–15%'} ]},
+];
+
+const STORE = 'cert-roadmap-planner';
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function today(){ const d=new Date(); d.setHours(0,0,0,0); return d; }
+function pd(s){ if(!s) return null; const p=String(s).split('-').map(Number); if(p.length!==3||!p[0]) return null; const d=new Date(p[0],p[1]-1,p[2]); d.setHours(0,0,0,0); return isNaN(d)?null:d; }
+function iso(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function addDays(d,n){ const x=new Date(d); x.setDate(x.getDate()+n); x.setHours(0,0,0,0); return x; }
+function daysBetween(a,b){ return Math.round((b-a)/86400000); }
+function fmt(d){ return d.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'}); }
+function fmtShort(d){ return d.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'}); }
+function weeksFor(h,hpw){ return Math.max(1, Math.ceil(h/Math.max(1,hpw))); }
+function midW(w){ const m=String(w).match(/(\d+)[^\d]+(\d+)/); if(m) return (+m[1]+ +m[2])/2; const s=String(w).match(/\d+/); return s?+s[0]:15; }
+
+/* ---------- state ---------- */
+function load(){ try{ const s=JSON.parse(localStorage.getItem(STORE)); return s&&typeof s==='object'?s:{}; }catch(e){ return {}; } }
+function save(){ try{ localStorage.setItem(STORE, JSON.stringify(state)); }catch(e){} }
+let state = load();
+state.perCert = state.perCert || {};
+if(state.hoursPerWeek==null) state.hoursPerWeek = 6;
+if(!state.startDate) state.startDate = iso(today());
+function cert(code){ return state.perCert[code] || (state.perCert[code]={}); }
+
+/* ---------- live study-app progress ---------- */
+function readProg(key){
+  try{
+    const raw = localStorage.getItem(key+'-study-progress');
+    if(!raw) return null;
+    const o = JSON.parse(raw); const ks = Object.keys(o||{});
+    if(!ks.length) return null;
+    let c=0,t=0,last='';
+    ks.forEach(s=>{ const d=o[s]||{}; c+=(+d.correct||0); t+=(+d.total||0); if(d.lastAttempt&&d.lastAttempt>last) last=d.lastAttempt; });
+    return { topics:ks.length, pct: t?Math.round(c/t*100):0, last };
+  }catch(e){ return null; }
+}
+
+/* ---------- plan sequencing ---------- */
+function computePlan(){
+  const hpw = +state.hoursPerWeek || 6;
+  let running = pd(state.startDate) || today();
+  return ROADMAP.map(c=>{
+    const st = cert(c.code);
+    const passed = st.status==='passed';
+    const estW = weeksFor(c.hours, hpw);
+    const start = new Date(running);
+    const suggestedEnd = addDays(start, estW*7);
+    const manual = pd(st.targetDate);
+    const effEnd = passed ? null : (manual || suggestedEnd);
+    if(!passed) running = manual || suggestedEnd;
+    return { c, st, passed, estW, start, suggestedEnd, manual, effEnd };
+  });
+}
+
+/* ---------- schedule ---------- */
+function buildSchedule(c, start, effEnd){
+  const doms = c.domains;
+  let totalWeeks = doms.length + 1;
+  if(effEnd){ totalWeeks = Math.max(doms.length, Math.ceil(daysBetween(start, effEnd)/7)); }
+  const sum = doms.reduce((a,d)=>a+midW(d.w),0) || 1;
+  let wk=1; const items=[];
+  doms.forEach((d,i)=>{
+    const span = Math.max(1, Math.round((totalWeeks) * midW(d.w)/sum));
+    const end = wk+span-1;
+    items.push({ i, wk: wk===end?('Wk '+wk):('Wk '+wk+'–'+end), title:d.t, w:d.w });
+    wk = end+1;
+  });
+  items.push({ i: doms.length, wk:'Wk '+wk+'+', title:'Final review & practice exam', w:null });
+  return items;
+}
+
+/* ---------- countdown ---------- */
+function countdown(effEnd, passed){
+  if(passed) return { txt:'Passed ✓', cls:'ok' };
+  if(!effEnd) return { txt:'—', cls:'muted' };
+  const d = daysBetween(today(), effEnd);
+  if(d<0)  return { txt:'Overdue '+(-d)+'d', cls:'warn' };
+  if(d===0) return { txt:'Today', cls:'warn' };
+  if(d<14) return { txt:'in '+d+' days', cls:'soon' };
+  return { txt:'in '+Math.round(d/7)+' wk', cls:'muted' };
+}
+
+const STATUSES = [['todo','Not started'],['studying','Studying'],['scheduled','Scheduled'],['passed','Passed']];
+
+/* ---------- render ---------- */
+function render(){
+  const plan = computePlan();
+
+  // summary
+  const passedN = plan.filter(p=>p.passed).length;
+  document.getElementById('s-passed').textContent = passedN + ' / ' + ROADMAP.length;
+  const upcoming = plan.filter(p=>!p.passed && p.effEnd).sort((a,b)=>a.effEnd-b.effEnd)[0];
+  if(upcoming){
+    document.getElementById('s-next').textContent = upcoming.c.code + ' · ' + fmtShort(upcoming.effEnd);
+    const cd = countdown(upcoming.effEnd, false);
+    const el = document.getElementById('s-countdown'); el.textContent = cd.txt; el.className = 'v cd ' + cd.cls;
+  } else {
+    document.getElementById('s-next').textContent = passedN===ROADMAP.length ? 'All done \u{1F389}' : '—';
+    document.getElementById('s-countdown').textContent = '—';
+  }
+
+  document.getElementById('startDate').value = state.startDate;
+  document.getElementById('hpw').value = state.hoursPerWeek;
+
+  document.getElementById('list').innerHTML = plan.map((p,idx)=>cardHTML(p, idx)).join('');
+}
+
+function cardHTML(p, idx){
+  const c = p.c, st = p.st;
+  const status = st.status || 'todo';
+  const cd = countdown(p.effEnd, p.passed);
+  const prog = c.app ? readProg(c.key) : null;
+
+  const statusSel = '<select data-cert="'+c.code+'" data-role="status">' +
+    STATUSES.map(s=>'<option value="'+s[0]+'"'+(s[0]===status?' selected':'')+'>'+s[1]+'</option>').join('') + '</select>';
+
+  const dateVal = st.targetDate || '';
+  const dateInput = '<input type="date" data-cert="'+c.code+'" data-role="date" value="'+dateVal+'" />';
+  const suggestLine = p.passed ? '' :
+    '<div class="suggest">Suggested: '+fmtShort(p.suggestedEnd)+
+      (st.targetDate ? '' : ' <button data-cert="'+c.code+'" data-role="use">use this</button>') + '</div>';
+
+  // progress block
+  let progBlock;
+  if(!c.app){
+    progBlock = '<div class="prog"><span class="badge-warn">app not built yet</span> &nbsp;study from the official guide for now.</div>';
+  } else if(prog){
+    progBlock = '<div class="prog">'+prog.topics+' topics practiced · '+prog.pct+'% correct · last active '+esc(prog.last)+
+      '<div class="bar"><span style="width:'+prog.pct+'%"></span></div></div>';
+  } else {
+    progBlock = '<div class="noprog">No practice recorded yet — open Study to start.</div>';
+  }
+
+  // actions
+  let actions;
+  if(c.app){
+    actions = '<a class="btn btn-primary" href="'+APP.exam(c.slug)+'">Practice exam</a>' +
+      '<a class="btn" href="'+APP.learn(c.slug)+'">Learn</a>' +
+      '<a class="btn" href="'+APP.study(c.slug)+'">Study by topic</a>' +
+      '<a class="btn" href="'+G(c.code)+'" target="_blank" rel="noopener">Study guide ↗</a>';
+  } else {
+    actions = '<a class="btn btn-primary" href="'+G(c.code)+'" target="_blank" rel="noopener">Microsoft Learn study guide ↗</a>';
+  }
+
+  // schedule
+  const sched = buildSchedule(c, p.start, p.effEnd);
+  const checks = st.checks || {};
+  const schedItems = sched.map(s=>{
+    const done = !!checks[s.i];
+    return '<label class="sitem'+(done?' done':'')+'">'+
+      '<input type="checkbox" data-cert="'+c.code+'" data-role="check" data-i="'+s.i+'"'+(done?' checked':'')+' />'+
+      '<span class="wk">'+s.wk+'</span>'+
+      '<span class="t">'+esc(s.title)+(s.w?' <span class="wt">('+esc(s.w)+')</span>':'')+'</span>'+
+      '</label>';
+  }).join('');
+  const doneN = sched.filter(s=>checks[s.i]).length;
+  const schedBlock = '<details class="sched"><summary>Study plan · '+doneN+'/'+sched.length+' steps'+
+    (p.effEnd?(' · target '+fmtShort(p.effEnd)):'')+'</summary>'+schedItems+'</details>';
+
+  return '<div class="card st-'+status+'">'+
+    '<div class="row1">'+
+      '<span class="num">'+String(idx+1).padStart(2,'0')+'</span>'+
+      '<span class="code">'+c.code+'</span>'+
+      '<span class="name">'+esc(c.name)+'</span>'+
+      '<span class="lvl">'+c.level+'</span>'+
+      '<span class="cd '+cd.cls+'">'+cd.txt+'</span>'+
+    '</div>'+
+    '<div class="controls">'+
+      '<div class="field"><label>Status</label>'+statusSel+'</div>'+
+      '<div class="field"><label>Target exam date</label>'+dateInput+suggestLine+'</div>'+
+    '</div>'+
+    progBlock+
+    '<div class="actions">'+actions+'</div>'+
+    schedBlock+
+  '</div>';
+}
+
+/* ---------- events ---------- */
+document.getElementById('startDate').addEventListener('change', e=>{ state.startDate = e.target.value || iso(today()); save(); render(); });
+document.getElementById('hpw').addEventListener('change', e=>{ let v=parseInt(e.target.value,10); if(isNaN(v)||v<1)v=1; if(v>60)v=60; state.hoursPerWeek=v; save(); render(); });
+document.getElementById('reset').addEventListener('click', ()=>{
+  if(confirm('Reset the planner? This clears your statuses, dates and study-plan ticks in this browser (your practice-app progress is not affected).')){
+    localStorage.removeItem(STORE); state = { perCert:{}, hoursPerWeek:6, startDate:iso(today()) }; render();
+  }
+});
+
+const list = document.getElementById('list');
+list.addEventListener('change', e=>{
+  const el = e.target; const code = el.dataset.cert; if(!code) return; const st = cert(code);
+  const role = el.dataset.role;
+  if(role==='status'){ st.status = el.value; }
+  else if(role==='date'){ st.targetDate = el.value || ''; }
+  else if(role==='check'){ st.checks = st.checks || {}; if(el.checked) st.checks[el.dataset.i]=true; else delete st.checks[el.dataset.i]; }
+  save(); render();
+});
+list.addEventListener('click', e=>{
+  const el = e.target; if(el.dataset && el.dataset.role==='use'){
+    const st = cert(el.dataset.cert); const p = computePlan().find(x=>x.c.code===el.dataset.cert);
+    if(p){ st.targetDate = iso(p.suggestedEnd); save(); render(); }
+  }
+});
+
+render();
+</script>
+</body>
+</html>
