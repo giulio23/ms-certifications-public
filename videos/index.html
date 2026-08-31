@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Giulio Stefanica">
+  <meta name="description" content="Curated YouTube learning videos, mapped to Microsoft certifications and real hands-on work.">
+  <title>Learning Videos — curated by channel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased min-h-screen">
+  <a id="hub-home" href="../" title="Back to the certification hub"
+     style="position:fixed;top:10px;left:10px;z-index:50;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;background:#0f172a;color:#fff;font:600 12px/1 ui-sans-serif,system-ui;text-decoration:none;border-radius:9999px;box-shadow:0 2px 8px rgba(0,0,0,.25);opacity:.82"
+     onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.82">&#8962;&nbsp;Hub</a>
+
+  <header class="max-w-5xl mx-auto px-4 md:px-8 pt-16 pb-6 text-center">
+    <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-xs font-medium px-3 py-1 rounded-full mb-5">
+      <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Curated YouTube · mapped to certs &amp; real work
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-3">Learning Videos</h1>
+    <p class="text-gray-600 max-w-2xl mx-auto">Hand-picked channels, every video summarized and tagged: what it teaches, why it's relevant to the work, a hands-on demo to try, and which cert it maps to.</p>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 md:px-8 pb-20">
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- Fabric -->
+      <a href="../dp-600/videos.html" class="group block bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg hover:border-gray-300 transition">
+        <div class="flex items-center justify-between mb-3">
+          <div class="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white font-bold text-xs">DP</div>
+          <span class="text-xs font-medium text-gray-400">148 videos</span>
+        </div>
+        <h2 class="text-lg font-semibold group-hover:text-blue-600">Microsoft Fabric</h2>
+        <p class="text-sm text-gray-500 mb-3">Aleksi Partanen — Master Microsoft Fabric</p>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">Mapped to <strong>DP-600</strong> by study point. Strong on Prepare-data (lakehouse, delta, warehouse, ingestion); lighter on semantic models.</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="text-[11px] font-medium text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">DP-600</span>
+          <span class="text-[11px] text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">lakehouse</span>
+          <span class="text-[11px] text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">delta</span>
+          <span class="text-[11px] text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">direct lake</span>
+        </div>
+        <span class="inline-flex items-center gap-1 mt-4 text-sm font-medium text-blue-600">Browse by study point →</span>
+      </a>
+
+      <!-- Powercademy -->
+      <a href="powercademy.html" class="group block bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg hover:border-gray-300 transition">
+        <div class="flex items-center justify-between mb-3">
+          <div class="w-10 h-10 bg-violet-600 rounded-xl flex items-center justify-center text-white font-bold text-xs">PC</div>
+          <span class="text-xs font-medium text-gray-400">64 videos</span>
+        </div>
+        <h2 class="text-lg font-semibold group-hover:text-violet-600">Powercademy</h2>
+        <p class="text-sm text-gray-500 mb-3">Power Platform &amp; AI</p>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">Multi-cert: <strong>PL-900 / PL-400 / AB-620</strong> and more. Copilot Studio agents, MCP servers, Foundry, Dataverse, Claude Code for Power Platform.</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="text-[11px] font-medium text-violet-700 bg-violet-50 border border-violet-100 px-2 py-0.5 rounded-full">PL-900</span>
+          <span class="text-[11px] font-medium text-violet-700 bg-violet-50 border border-violet-100 px-2 py-0.5 rounded-full">PL-400</span>
+          <span class="text-[11px] font-medium text-violet-700 bg-violet-50 border border-violet-100 px-2 py-0.5 rounded-full">AB-620</span>
+          <span class="text-[11px] text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">copilot studio</span>
+          <span class="text-[11px] text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">mcp</span>
+        </div>
+        <span class="inline-flex items-center gap-1 mt-4 text-sm font-medium text-violet-600">Browse by cert →</span>
+      </a>
+
+    </div>
+
+    <p class="text-center text-sm text-gray-400 mt-10">More channels coming. Videos share a common topic vocabulary — a cross-channel "browse by topic" view is planned, so a thread like <em>Claude Code</em> or <em>MCP</em> or <em>AI agents</em> spans every channel.</p>
+  </main>
+</body>
+</html>
