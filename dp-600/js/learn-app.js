@@ -1,5 +1,6 @@
 /* Learn / Mastery page — renders MASTERY guides + a per-bullet skills index. Generic across certs. */
 const DCOLOR = {
+  0: { dot: 'bg-violet-500', chip: 'bg-violet-100 text-violet-700' },
   1: { dot: 'bg-blue-500', chip: 'bg-blue-100 text-blue-700' },
   2: { dot: 'bg-emerald-500', chip: 'bg-emerald-100 text-emerald-700' },
   3: { dot: 'bg-amber-500', chip: 'bg-amber-100 text-amber-700' },
@@ -81,7 +82,7 @@ function renderIndex() {
             <div class="text-xs text-gray-400">${n} question${n === 1 ? '' : 's'}${g.ready ? ' · guide available' : ''}</div>
           </div>
           ${g.ready ? `<a href="#${g.id}" class="text-xs font-medium text-gray-600 hover:text-gray-900 border border-gray-200 hover:border-gray-300 rounded-lg px-3 py-1.5 transition whitespace-nowrap">Guide</a>` : ''}
-          <a href="exam.html?area=${g.id}" class="text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-lg px-3 py-1.5 transition whitespace-nowrap">Practice ${n} →</a>
+          ${n ? `<a href="exam.html?area=${g.id}" class="text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-lg px-3 py-1.5 transition whitespace-nowrap">Practice ${n} →</a>` : ''}
         </div>`;
     });
     html += `</div></div>`;
@@ -125,13 +126,13 @@ function renderGuide(id) {
   pane.innerHTML = header +
     `<p class="lead text-gray-600 leading-relaxed mb-6">${g.intro}</p>` +
     `<div class="guide">${g.html}</div>` +
-    `<div class="mt-8 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl p-6 text-white shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+    (n === 0 ? '' : `<div class="mt-8 bg-gradient-to-br from-blue-500 to-sky-600 rounded-2xl p-6 text-white shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
        <div>
          <h3 class="font-semibold mb-1">Ready to test yourself?</h3>
          <p class="text-sm text-white/80">${n} questions are tagged to bullet ${g.id} — jump into filtered practice.</p>
        </div>
        <a href="exam.html?area=${g.id}" class="bg-white text-blue-600 text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-blue-50 transition whitespace-nowrap">Practice ${n} →</a>
-     </div>`;
+     </div>`);
   const sel = document.getElementById('guide-select');
   if (sel) sel.value = g.id;
   window.scrollTo({ top: 0 });

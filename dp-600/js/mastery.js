@@ -3,6 +3,7 @@
  * Rendered by learn.html / learn-app.js. Content is original study material.
  */
 const MASTERY_DOMAINS = [
+  { n: 0, title: 'Fabric foundations', weight: 'read first', color: 'violet' },
   { n: 1, title: 'Maintain a data analytics solution', weight: '25–30%', color: 'blue' },
   { n: 2, title: 'Prepare data', weight: '45–50%', color: 'emerald' },
   { n: 3, title: 'Implement & manage semantic models', weight: '25–30%', color: 'amber' },
@@ -10,9 +11,133 @@ const MASTERY_DOMAINS = [
 
 const MASTERY = [
   {
+    id: '0.1', domain: 0, title: 'Fabric vocabulary the whole exam assumes', ready: true,
+    intro: 'Every DP-600 question lives inside one picture: a <b>capacity</b> runs <b>workspaces</b>, workspaces hold <b>items</b>, and every table those items create lands in <b>OneLake</b> as Delta Parquet. Learn this page first. It answers about one question in five on its own, and it is the ground every other guide stands on.',
+    html: `
+<div class="lesson">
+<h2>Lesson 1a. The picture</h2>
+<ul>
+  <li><b>Capacity.</b> The compute you pay for (F2, F64, the 60-day trial). Workspaces are assigned to a capacity. No capacity, no Fabric items.</li>
+  <li><b>Workspace.</b> The container. Holds items, has four roles (Admin, Member, Contributor, Viewer), connects to Git, and sits in a deployment-pipeline stage.</li>
+  <li><b>OneLake.</b> One tenant-wide data lake, think OneDrive for data. Every lakehouse and warehouse stores its tables here as <b>Delta Parquet</b>. That is why one copy of data can be read by Spark, SQL, KQL and Power BI.</li>
+  <li><b>Shortcut.</b> A pointer in OneLake to data that lives elsewhere (another lakehouse, ADLS Gen2, S3, Dataverse, Google Cloud Storage). No copy, no ingestion. Trigger words: <em>without copying</em>, <em>minimize duplication</em>, <em>reference data in another workspace</em>.</li>
+  <li><b>Medallion layers.</b> Bronze = raw as landed, Silver = cleaned and conformed, Gold = star schema ready for reporting. Questions name the layer to tell you how clean the data is.</li>
+</ul>
+
+<h3>The four data stores, and how to pick one</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>Store</th><th>Language</th><th>Best for</th><th>Exam signal</th></tr></thead>
+  <tbody>
+    <tr><td><b>Lakehouse</b></td><td>Spark (PySpark, Spark SQL) in notebooks</td><td>Files + tables, data engineering, semi-structured data, medallion layers</td><td>"Parquet or CSV files", "notebooks", "data engineers"</td></tr>
+    <tr><td><b>Warehouse</b></td><td>T-SQL, full read and write</td><td>Relational modeling, stored procedures, SQL developers, multi-table transactions</td><td>"T-SQL", "stored procedures", "SQL analysts"</td></tr>
+    <tr><td><b>Eventhouse / KQL database</b></td><td>KQL</td><td>Streaming, time series, logs, IoT, real-time dashboards</td><td>"real-time", "telemetry", "events per second"</td></tr>
+    <tr><td><b>Semantic model</b></td><td>DAX</td><td>The Power BI model layer over any of the above</td><td>"report", "measure", "Direct Lake"</td></tr>
+  </tbody>
+</table></div>
+
+<div class="callout callout-key"><b>Two things people confuse</b>
+  <ul>
+    <li>Every lakehouse gets a <b>SQL analytics endpoint</b> for free. It is <b>read-only T-SQL</b> over the lakehouse tables. You can create views, functions and procedures there, but you cannot INSERT, UPDATE or DELETE. If the question needs writes in T-SQL, the answer is a <b>warehouse</b>.</li>
+    <li>Every lakehouse and warehouse gets a <b>default semantic model</b>. Custom semantic models on top of them use <b>Direct Lake</b>, which reads the Delta files straight from OneLake: no import, no SQL query per visual.</li>
+  </ul>
+</div>
+
+<h3>Ingestion tools, ranked by how much code</h3>
+<div class="table-wrap"><table>
+  <thead><tr><th>Tool</th><th>Code level</th><th>Pick it when</th></tr></thead>
+  <tbody>
+    <tr><td><b>Shortcut</b></td><td>None</td><td>Data is already in a lake somewhere, just reference it</td></tr>
+    <tr><td><b>Copy data activity</b> (pipeline)</td><td>Low-code</td><td>Bulk copy, <b>highest throughput</b>, orchestration and scheduling</td></tr>
+    <tr><td><b>Dataflow Gen2</b></td><td>Low-code, Power Query M</td><td>Transformations in M, business users, small to medium data</td></tr>
+    <tr><td><b>Notebook</b> (Spark)</td><td>Code</td><td>Complex transformations, big data, Python or Scala</td></tr>
+  </tbody>
+</table></div>
+<p class="note-line">Worked example from the question bank: "1 TB in an external source, highest throughput, low-code" is the <b>Copy data activity</b>. Dataflow Gen2 is low-code too, but it is not built for throughput. A notebook has the throughput but is code.</p>
+
+<h3>Discovery and real-time words</h3>
+<ul>
+  <li><b>OneLake catalog.</b> Where you browse, search and govern every item in the tenant you can see. Trigger: "discover data across workspaces".</li>
+  <li><b>Real-Time hub.</b> The single place that lists every streaming source (eventstreams, KQL tables, Azure Event Hubs, Kafka). Trigger: "discover streaming data".</li>
+  <li><b>Eventstream.</b> The no-code pipe that brings events in and routes them to an eventhouse, a lakehouse or an Activator alert.</li>
+  <li><b>Delta table.</b> Parquet files plus a transaction log. Gives ACID, time travel and MERGE. <b>V-Order</b> is the write-time optimisation that makes Direct Lake reads fast.</li>
+</ul>
+
+<h2>Check 0</h2>
+<ol class="quiz">
+  <li>A team wants T-SQL stored procedures that write results into tables. Lakehouse SQL endpoint or warehouse?</li>
+  <li>Data already sits in ADLS Gen2 and must appear in a lakehouse without a copy. Which feature?</li>
+  <li>IoT sensors send 50,000 events per second that must be queried within seconds. Which store?</li>
+  <li>Name the three medallion layers and which one holds the star schema.</li>
+  <li>Which ingestion tool is low-code AND the highest-throughput choice for bulk loads?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>Warehouse. The SQL analytics endpoint is read-only.</li>
+  <li>A OneLake shortcut.</li>
+  <li>Eventhouse (KQL database), fed by an eventstream.</li>
+  <li>Bronze (raw), Silver (cleaned), Gold (star schema for reporting).</li>
+  <li>The Copy data activity in a pipeline.</li>
+</ol>
+</details>
+</div>
+`,
+  },
+  {
     id: '1.1', domain: 1, title: 'Implement security and governance', ready: true,
     intro: 'Fabric security is <strong>layered</strong> — the exam rarely asks "how", it asks <em>"which control, at which layer?"</em>. The same idea (e.g. row-level security) shows up in the warehouse, the semantic model, and OneLake, each enforced differently. Nail <b>where each control lives</b> and you own this sub-skill.',
     html: `
+<div class="lesson">
+<h2>Lesson 1b. Which control, at which layer?</h2>
+<p>The exam rarely asks how to configure security. It asks <b>which control, at which layer</b>. Row-level security exists in three different places, and the right answer depends on where the user runs the query.</p>
+
+<h3>Layer 1: workspace roles</h3>
+<p>Coarse. A role applies to every item in the workspace. Least-privilege trap: "needs to read data in Lakehouse explorer" is <b>Viewer</b>. "Needs to create a notebook" is <b>Contributor</b>. Only answer Member or Admin when sharing or managing access is part of the requirement.</p>
+
+<h3>Layer 2: item permissions</h3>
+<p>Share one item without giving any workspace role. When you share a warehouse or lakehouse the default is <b>Read</b>: the user can open the item and see metadata, nothing more. Add the extra permissions on purpose:</p>
+<div class="table-wrap"><table>
+  <thead><tr><th>Permission</th><th>Lets the user</th></tr></thead>
+  <tbody>
+    <tr><td><b>Read</b></td><td>Open the item, see it in the workspace, connect via the SQL endpoint but not read table data</td></tr>
+    <tr><td><b>ReadData</b></td><td>Read all data through the SQL endpoint (T-SQL). Granular T-SQL GRANT or DENY can then narrow it</td></tr>
+    <tr><td><b>ReadAll</b></td><td>Read the underlying files in OneLake, so Spark and Lakehouse explorer work</td></tr>
+    <tr><td><b>Build</b></td><td>Build reports on the default semantic model</td></tr>
+  </tbody>
+</table></div>
+<p class="note-line">Worked example from the question bank: "You share DW1 with User1 with the default permissions. What can User1 do?" The answer is connect to the SQL endpoint. Reading table data needs ReadData, reading Parquet needs ReadAll, building reports needs Build.</p>
+
+<h3>Layer 3: granular data security</h3>
+<p>Memorise where each control lives; the Notes table below is the reference. The decisions that separate the answers:</p>
+<ul>
+  <li><b>CLS hides, DDM masks.</b> Still sees the row but the email reads xxxx@xxxx.com: that is dynamic data masking. The column is gone: that is column-level security.</li>
+  <li><b>Warehouse RLS is T-SQL.</b> An inline table-valued function as the predicate, bound with CREATE SECURITY POLICY. If the question says Power BI role and DAX, it is semantic-model RLS instead.</li>
+  <li><b>Semantic-model RLS does not apply to Admins, Members or Contributors.</b> It filters Viewers and users who only have item permissions.</li>
+  <li><b>OneLake security reaches the SQL endpoint only in user identity mode.</b> In the default delegated mode the endpoint reads as the item owner.</li>
+  <li><b>DefaultReader trap.</b> A OneLake data access role does nothing while the user is still in DefaultReader. Remove them.</li>
+</ul>
+
+<h3>Labels and endorsement in one breath</h3>
+<p>Sensitivity labels come from Microsoft Purview, travel with exports to Excel and PBIX, can enforce encryption and inherit downstream from model to report. Endorsement has three levels: <b>Promoted</b> by anyone who can edit the item, <b>Certified</b> only by users the Fabric admin has authorised, <b>Master data</b> for authoritative reference data. "Official source of truth" means Certified.</p>
+
+<h2>Check 1</h2>
+<ol class="quiz">
+  <li>A user must see only their own region rows in a warehouse queried through SQL. Name the T-SQL objects you create.</li>
+  <li>Same requirement, but users only ever open a Power BI report on a semantic model. Where does the RLS go now?</li>
+  <li>The user still sees the row but the card number shows as XXXX-XXXX-XXXX-1234. CLS or DDM?</li>
+  <li>You set a OneLake data access role on the Finance folder, yet the user still sees everything. Two things to check.</li>
+  <li>Marketing wants the Sales model marked as the official company source. Which endorsement level, and who can set it?</li>
+</ol>
+<details class="answers"><summary>Answers</summary>
+<ol>
+  <li>An inline table-valued function that returns 1 when the region matches the caller, bound to the table with CREATE SECURITY POLICY (a filter predicate).</li>
+  <li>A role on the semantic model with a DAX filter, typically using USERPRINCIPALNAME(). Users must be Viewers or item-permission-only for it to apply.</li>
+  <li>Dynamic data masking. CLS would remove the column entirely.</li>
+  <li>The user is still in DefaultReader; and the SQL analytics endpoint is still in delegated identity mode rather than user identity mode.</li>
+  <li>Certified, set only by users the Fabric admin has authorised. Promoted is what any editor can do.</li>
+</ol>
+</details>
+</div>
+
 <h2>Notes</h2>
 
 <h3>Access layers: workspace roles vs item permissions</h3>
