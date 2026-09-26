@@ -9,7 +9,11 @@ const path = require('path');
 const vm = require('vm');
 
 const CERT = (process.argv[2] || 'ab-731').toLowerCase();
-const PRIV = `D:/Projects/ms-certifications/${CERT}/practice-exam-merged`;
+// D:/Projects/ms-certifications was absorbed into gs-learning on 2026-08-31 and the merged
+// apps moved again to certs/<cert>/study/. This path was still the old one, so the public
+// build could not run at all. Fixed 2026-09-26. Override with CERTS_ROOT if the tree moves.
+const CERTS_ROOT = process.env.CERTS_ROOT || 'D:/Projects/gs-learning/certs';
+const PRIV = `${CERTS_ROOT}/${CERT}/study/practice-exam-merged`;
 const PUBROOT = 'D:/Projects/ms-certifications-public';
 const PUB = path.join(PUBROOT, CERT);
 
