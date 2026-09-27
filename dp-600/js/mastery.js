@@ -91,7 +91,7 @@ const MASTERY = [
 <p>The exam rarely asks how to configure security. It asks <b>which control, at which layer</b>. Row-level security exists in three different places, and the right answer depends on where the user runs the query.</p>
 
 <h3>Layer 1: workspace roles</h3>
-<p>Coarse. A role applies to every item in the workspace. Least-privilege trap: "needs to read data in Lakehouse explorer" is <b>Viewer</b>. "Needs to create a notebook" is <b>Contributor</b>. Only answer Member or Admin when sharing or managing access is part of the requirement.</p>
+<p>Coarse. A role applies to every item in the workspace. Least-privilege trap: a <b>Viewer</b> reads lakehouse data only through the <b>SQL analytics endpoint</b>. Reading files in <b>Lakehouse explorer</b>, through OneLake APIs or with Spark needs <b>Contributor</b>, and so does creating a notebook. Only answer Member or Admin when sharing or managing access is part of the requirement.</p>
 
 <h3>Layer 2: item permissions</h3>
 <p>Share one item without giving any workspace role. When you share a warehouse or lakehouse the default is <b>Read</b>: the user can open the item and see metadata, nothing more. Add the extra permissions on purpose:</p>
